@@ -19,7 +19,7 @@ function Homepage() {
           <img
             src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80"
             alt="Our Chef"
-            className="h-[280px] w-full rounded-2xl object-cover shadow-xl sm:h-[350px] sm:rounded-3xl md:h-[420px] lg:h-[480px] lg:rounded-[40px]"
+            className="h-280px w-full rounded-2xl object-cover shadow-xl sm:h-350px sm:rounded-3xl md:h-420px lg:h-480px lg:rounded-[40px]"
           />
         </div>
 
