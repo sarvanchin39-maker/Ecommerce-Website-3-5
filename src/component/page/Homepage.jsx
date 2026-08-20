@@ -45,7 +45,7 @@ function Homepage() {
           {/* MAIN TITLE */}
           <h2 className="mt-3 text-2xl font-black leading-tight tracking-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl">
             We Serve Fresh &{" "}
-            <span className="text-rose-600">
+            <span className="text-amber-300">
               Delicious Food
             </span>
           </h2>
@@ -62,7 +62,7 @@ function Homepage() {
             
             {/* YEARS */}
             <div className="rounded-2xl border border-slate-200 bg-white px-2 py-4 shadow-sm transition hover:-translate-y-1 hover:border-rose-200 hover:shadow-md sm:p-5">
-              <p className="text-xl font-black text-slate-900 sm:text-2xl md:text-3xl">
+              <p className="text-xl font-black text-amber-300 sm:text-2xl md:text-3xl">
                 10+
               </p>
 
@@ -84,7 +84,7 @@ function Homepage() {
 
             {/* CUSTOMERS */}
             <div className="rounded-2xl border border-slate-200 bg-white px-2 py-4 shadow-sm transition hover:-translate-y-1 hover:border-rose-200 hover:shadow-md sm:p-5">
-              <p className="text-xl font-black text-slate-900 sm:text-2xl md:text-3xl">
+              <p className="text-xl font-black text-amber-300 sm:text-2xl md:text-3xl">
                 1K+
               </p>
 

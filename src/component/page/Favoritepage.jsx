@@ -33,7 +33,7 @@ function Favoritepage() {
 
           <Link
             to="/shop"
-            className="mt-7 inline-flex items-center justify-center rounded-full bg-rose-600 px-7 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-rose-700 sm:text-base"
+            className="mt-7 inline-flex items-center justify-center rounded-full bg-amber-300 px-7 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-rose-700 sm:text-base"
           >
             Browse Menu
           </Link>

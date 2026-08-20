@@ -85,7 +85,7 @@ function Hero() {
               </div>
 
               <div>
-                <p className="font-bold text-slate-900">
+                <p className="font-bold text-amber-300">
                   4.9 Rating
                 </p>
 
@@ -128,20 +128,20 @@ function Hero() {
               Starting From
             </p>
 
-            <p className="text-xl font-black text-rose-600 sm:text-2xl">
+            <p className="text-xl font-black text-amber-300 sm:text-2xl">
               $3.00
             </p>
           </div>
 
           {/* CUSTOMER CARD */}
-          <div className="absolute right-2 top-5 z-20 rounded-2xl border border-slate-100 bg-white px-3 py-3 shadow-xl sm:-right-4 sm:top-12 sm:p-4">
+          <div className="absolute right-2 top-5 z-20 rounded-2xl border border-slate-100 bg-white px-3 py-3 shadow-xl sm:-right-8 sm:top-2 sm:p-4">
             <div className="flex items-center gap-2">
               <span className="text-lg sm:text-xl">
                 😍
               </span>
 
               <div>
-                <p className="text-sm font-black text-slate-900 sm:text-base">
+                <p className="text-sm font-black text-amber-300 sm:text-base">
                   1000+
                 </p>
 

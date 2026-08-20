@@ -100,8 +100,8 @@ function Shoppage() {
 
                 ${
                   selectedCategory === category
-                    ? "border-rose-600 bg-rose-600 text-white shadow-sm"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-rose-500 hover:bg-rose-50 hover:text-rose-600"
+                    ? "border-amber-300 bg-amber-300 text-white shadow-sm"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-amber-100 hover:bg-amber-200 hover:text-fuchsia-500"
                 }
               `}
             >

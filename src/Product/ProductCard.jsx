@@ -106,7 +106,7 @@ function ProductCard({ product }) {
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
 
-              <span className="text-xl font-black text-slate-900 sm:text-2xl">
+              <span className="text-xl font-black text-amber-800 sm:text-2xl">
                 ${Number(product.price).toFixed(2)}
               </span>
 
@@ -138,7 +138,7 @@ function ProductCard({ product }) {
           <button
             type="button"
             onClick={() => addToCart(product)}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 text-base text-white shadow-sm transition duration-300 hover:scale-110 hover:bg-rose-600 sm:h-12 sm:w-12 sm:text-lg"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400 text-base text-white shadow-sm transition duration-300 hover:scale-110 hover:bg-amber-700 sm:h-12 sm:w-12 sm:text-lg"
             title="Add to cart"
           >
             <FaCartPlus />

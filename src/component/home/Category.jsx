@@ -40,8 +40,8 @@ function Category() {
               md:px-6 md:py-3
               ${
                 selectedCategory === category
-                  ? "bg-pink-500 text-white shadow-lg shadow-pink-500/20"
-                  : "border border-gray-200 bg-white text-gray-600 hover:border-pink-500 hover:text-pink-500"
+                  ? "bg-amber-300 text-white shadow-lg shadow-pink-500/20"
+                  : "border border-gray-200 bg-white text-gray-600 hover:border-amber-300 hover:bg-amber-100"
               }
             `}
           >

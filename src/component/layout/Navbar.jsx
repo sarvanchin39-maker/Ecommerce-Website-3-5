@@ -97,7 +97,7 @@ function Navbar() {
           {/* FAVORITE */}
           <Link
             to="/favorite"
-            className="relative hidden h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-rose-600 hover:bg-rose-50 hover:text-rose-600 sm:flex"
+            className="relative hidden h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-amber-300 hover:bg-rose-50 hover:text-white sm:flex"
             title="Favorite"
           >
             <FaHeart />
@@ -131,7 +131,7 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:border-rose-600 hover:text-rose-600 md:hidden sm:h-11 sm:w-11"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:border-amber-300 hover:text-mist-950 md:hidden sm:h-11 sm:w-11"
           >
             {open ? <FaTimes /> : <FaBars />}
           </button>
@@ -178,13 +178,13 @@ function Navbar() {
             <Link
               to="/favorite"
               onClick={() => setOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition hover:border-rose-600 hover:text-rose-600"
+              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition hover:border-amber-400 hover:text-fuchsia-600"
             >
               <FaHeart />
               Favorite
 
               {favoriteCount > 0 && (
-                <span className="rounded-full bg-rose-600 px-2 py-0.5 text-xs text-white">
+                <span className="rounded-full bg-red-500 px-2 py-0.5 text-xs text-white">
                   {favoriteCount}
                 </span>
               )}
