@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   FaCartPlus,
   FaStar,
@@ -10,124 +9,136 @@ import { Link } from "react-router-dom";
 import { useProduct } from "../context/ProductContext";
 
 function ProductCard({ product }) {
-  const { addToCart } = useProduct();
+  const {
+    addToCart,
+    toggleFavorite,
+    isFavorite,
+  } = useProduct();
 
-  // FAVORITE
-  const [isFavorite, setIsFavorite] = useState(false);
+  const favorite = isFavorite(product.id);
 
   // CALCULATE DISCOUNT %
   const discount =
     product.originalPrice &&
-    product.originalPrice > product.price
+    Number(product.originalPrice) >
+      Number(product.price)
       ? Math.round(
-          ((product.originalPrice - product.price) /
-            product.originalPrice) *
+          ((Number(product.originalPrice) -
+            Number(product.price)) /
+            Number(product.originalPrice)) *
             100
         )
       : 0;
 
   return (
-    <div className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+    <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:rounded-3xl">
 
-      {/* ================= IMAGE ================= */}
-      <div className="relative h-60 overflow-hidden bg-gray-100">
+      {/* IMAGE */}
+      <div className="relative h-56 overflow-hidden bg-slate-100 sm:h-60">
 
         <Link to={`/product/${product.id}`}>
           <img
             src={product.imgs[0]}
             alt={product.name}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
           />
         </Link>
 
-        {/* ================= LIKE BUTTON ================= */}
+        {/* FAVORITE */}
         <button
           type="button"
-          onClick={() => setIsFavorite(!isFavorite)}
-          className={`absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-lg shadow-lg transition duration-300 hover:scale-110 ${
-            isFavorite
-              ? "bg-rose-500 text-white"
-              : "bg-white text-gray-400 hover:text-rose-500"
+          onClick={() => toggleFavorite(product)}
+          className={`absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-full border text-base shadow-md transition duration-300 hover:scale-110 sm:left-4 sm:top-4 ${
+            favorite
+              ? "border-rose-600 bg-rose-600 text-white"
+              : "border-slate-100 bg-white text-slate-500 hover:border-rose-500 hover:text-rose-600"
           }`}
-          title="Favorite"
+          title={
+            favorite
+              ? "Remove from favorite"
+              : "Add to favorite"
+          }
         >
           <FaHeart />
         </button>
 
-        {/* ================= DISCOUNT BUTTON ================= */}
+        {/* DISCOUNT */}
         {discount > 0 && (
-          <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-rose-500 px-4 py-2 text-xs font-bold text-white shadow-lg">
+          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-rose-600 px-3 py-2 text-xs font-bold text-white shadow-md sm:right-4 sm:top-4">
             <FaTag />
             {discount}% OFF
           </div>
         )}
       </div>
 
-      {/* ================= CONTENT ================= */}
-      <div className="p-5">
+      {/* CONTENT */}
+      <div className="p-4 sm:p-5">
 
         {/* RATING */}
         <div className="mb-3 flex items-center gap-1">
-          <FaStar className="text-yellow-500" />
+          <FaStar className="text-amber-400" />
 
-          <span className="font-semibold text-gray-800">
+          <span className="text-sm font-bold text-slate-800">
             {product.rating}
           </span>
 
-          <span className="ml-1 text-xs text-gray-400">
+          <span className="ml-1 text-xs text-slate-400">
             Rating
           </span>
         </div>
 
         {/* PRODUCT NAME */}
         <Link to={`/product/${product.id}`}>
-          <h3 className="text-xl font-black text-gray-800 transition duration-300 hover:text-pink-500">
+          <h3 className="line-clamp-1 text-lg font-black text-slate-900 transition duration-300 hover:text-rose-600 sm:text-xl">
             {product.name}
           </h3>
         </Link>
 
         {/* DESCRIPTION */}
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+        <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500">
           {product.description}
         </p>
 
-        {/* ================= PRICE + CART ================= */}
-        <div className="mt-5 flex items-center justify-between">
+        {/* PRICE + CART */}
+        <div className="mt-5 flex items-end justify-between gap-3">
 
           {/* PRICE */}
-          <div>
-            <div className="flex items-center gap-2">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
 
-              <span className="text-2xl font-black text-amber-700">
-                ${product.price.toFixed(2)}
+              <span className="text-xl font-black text-slate-900 sm:text-2xl">
+                ${Number(product.price).toFixed(2)}
               </span>
 
-              {product.originalPrice && (
-                <del className="text-sm font-medium text-gray-400">
-                  ${product.originalPrice.toFixed(2)}
-                </del>
-              )}
-
+              {product.originalPrice &&
+                Number(product.originalPrice) >
+                  Number(product.price) && (
+                  <del className="text-xs font-medium text-slate-400 sm:text-sm">
+                    $
+                    {Number(
+                      product.originalPrice
+                    ).toFixed(2)}
+                  </del>
+                )}
             </div>
 
             {/* SAVE PRICE */}
             {discount > 0 && (
-              <p className="mt-1 text-xs font-bold text-blue-800">
+              <p className="mt-1 text-xs font-semibold text-rose-600">
                 Save $
                 {(
-                  product.originalPrice -
-                  product.price
+                  Number(product.originalPrice) -
+                  Number(product.price)
                 ).toFixed(2)}
               </p>
             )}
-
           </div>
 
-          {/* ================= ADD TO CART ================= */}
+          {/* ADD TO CART */}
           <button
             type="button"
             onClick={() => addToCart(product)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-700 text-lg text-white shadow-md transition duration-300 hover:scale-110 hover:bg-amber-500"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-900 text-base text-white shadow-sm transition duration-300 hover:scale-110 hover:bg-rose-600 sm:h-12 sm:w-12 sm:text-lg"
             title="Add to cart"
           >
             <FaCartPlus />

@@ -11,168 +11,174 @@ import {
 import { useProduct } from "../context/ProductContext";
 
 function ProductDetail() {
-  // Get product id from URL
   const { id } = useParams();
-
-  // For navigation
   const navigate = useNavigate();
 
-  // Get products and addToCart from Context
   const { products, addToCart } = useProduct();
 
-  // Find product by id
   const product = products.find(
     (item) => item.id === Number(id)
   );
 
-  // Product Not Found
+  // PRODUCT NOT FOUND
   if (!product) {
     return (
-      <div className="flex min-h-500px items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-6xl">😢</p>
+      <section className="flex min-h-[70vh] items-center justify-center bg-slate-50 px-4">
+        <div className="max-w-md text-center">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-rose-50 text-5xl">
+            😢
+          </div>
 
-          <h1 className="mt-5 text-3xl font-black text-gray-900">
+          <h1 className="mt-6 text-2xl font-black text-slate-900 sm:text-3xl">
             Food Not Found
           </h1>
 
-          <p className="mt-3 text-gray-500">
+          <p className="mt-3 text-sm leading-6 text-slate-500 sm:text-base">
             Sorry, this food item could not be found.
           </p>
 
-          {/* Back To Menu */}
           <button
+            type="button"
             onClick={() => navigate("/shop")}
-            className="mx-auto mt-6 flex items-center gap-2 rounded-full bg-pink-500 px-6 py-3 font-bold text-white transition hover:bg-pink-500"
+            className="mx-auto mt-7 flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white transition hover:bg-rose-600 sm:text-base"
           >
             <FaArrowLeft />
-            Back
+            Back To Menu
           </button>
         </div>
-      </div>
+      </section>
     );
   }
 
   return (
-    <section className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section className="min-h-screen bg-slate-50 py-8 sm:py-12 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* ================= BACK BUTTON ================= */}
+        {/* BACK BUTTON */}
         <button
+          type="button"
           onClick={() => navigate("/shop")}
-          className="mb-8 flex items-center gap-2 rounded-full bg-indigo-500 px-5 py-3 font-bold text-gray-700 shadow-sm transition duration-300 hover:bg-pink-500 hover:text-white"
+          className="mb-7 flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-rose-500 hover:text-rose-600 sm:mb-8"
         >
           <FaArrowLeft />
-          Back
+          Back To Menu
         </button>
 
-        {/* ================= PRODUCT ================= */}
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+        {/* PRODUCT */}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
 
-          {/* ================= IMAGE ================= */}
-          <div className="overflow-hidden rounded-[40px] bg-white shadow-sm">
+          {/* IMAGE */}
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm lg:rounded-[36px]">
             <img
-              src={product.imgs[0]}
+              src={product.imgs?.[0]}
               alt={product.name}
-              className="h-350px w-full object-cover transition duration-500 hover:scale-105 sm:h-450px lg:h-500px"
+              className="
+                h-300px
+                w-full
+                object-cover
+                transition
+                duration-700
+                hover:scale-105
+                sm:h-400px
+                lg:h-500px
+              "
             />
           </div>
 
-          {/* ================= DETAILS ================= */}
+          {/* DETAILS */}
           <div className="flex flex-col justify-center">
 
-            {/* Category */}
-            <span className="w-fit rounded-full bg-orange-100 px-4 py-2 text-sm font-bold text-orange-500">
+            {/* CATEGORY */}
+            <span className="w-fit rounded-full bg-rose-50 px-4 py-2 text-xs font-bold uppercase tracking-wide text-rose-600 sm:text-sm">
               {product.category}
             </span>
 
-            {/* Product Name */}
-            <h1 className="mt-5 text-4xl font-black text-gray-950 md:text-5xl">
+            {/* NAME */}
+            <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
               {product.name}
             </h1>
 
-            {/* Rating */}
-            <div className="mt-5 flex items-center gap-2">
-              <FaStar className="text-yellow-500" />
+            {/* RATING */}
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <FaStar className="text-amber-400" />
 
-              <span className="font-bold text-gray-900">
+              <span className="font-bold text-slate-900">
                 {product.rating}
               </span>
 
-              <span className="text-gray-400">
+              <span className="text-sm text-slate-400">
                 (120+ Reviews)
               </span>
             </div>
 
-            {/* Description */}
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            {/* DESCRIPTION */}
+            <p className="mt-5 max-w-xl text-sm leading-7 text-slate-500 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">
               {product.description}
             </p>
 
-            {/* Price */}
-            <div className="mt-7 flex items-end gap-3">
-
-              <p className="text-4xl font-black text-orange-500">
-                ${product.price.toFixed(2)}
+            {/* PRICE */}
+            <div className="mt-6 flex flex-wrap items-end gap-3 sm:mt-7">
+              <p className="text-3xl font-black text-slate-900 sm:text-4xl">
+                ${Number(product.price).toFixed(2)}
               </p>
 
-              {product.originalPrice && (
-                <del className="pb-1 text-lg text-gray-400">
-                  ${product.originalPrice.toFixed(2)}
-                </del>
-              )}
-
+              {product.originalPrice &&
+                Number(product.originalPrice) >
+                  Number(product.price) && (
+                  <del className="pb-1 text-base text-slate-400 sm:text-lg">
+                    $
+                    {Number(
+                      product.originalPrice
+                    ).toFixed(2)}
+                  </del>
+                )}
             </div>
 
-            {/* ================= DELIVERY INFO ================= */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            {/* DELIVERY INFO */}
+            <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
 
-              {/* Delivery */}
-              <div className="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-sm">
-
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100">
-                  <FaClock className="text-orange-500" />
+              {/* DELIVERY */}
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-rose-50">
+                  <FaClock className="text-rose-600" />
                 </div>
 
                 <div>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-slate-400">
                     Delivery
                   </p>
 
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-slate-900">
                     20-30 min
                   </p>
                 </div>
-
               </div>
 
-              {/* Shipping */}
-              <div className="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-sm">
-
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-100">
-                  <FaTruck className="text-orange-500" />
+              {/* SHIPPING */}
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-rose-50">
+                  <FaTruck className="text-rose-600" />
                 </div>
 
                 <div>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-slate-400">
                     Shipping
                   </p>
 
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-slate-900">
                     Free Delivery
                   </p>
                 </div>
-
               </div>
-
             </div>
 
-            {/* ================= ADD TO CART ================= */}
+            {/* ADD TO CART */}
             <button
+              type="button"
               onClick={() => addToCart(product)}
-              className="mt-9 flex w-fit items-center gap-3 rounded-full bg-orange-500 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-orange-500/30 transition duration-300 hover:-translate-y-1 hover:bg-orange-600"
+              className="mt-8 flex w-full items-center justify-center gap-3 rounded-full bg-slate-900 px-8 py-3.5 text-sm font-bold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-rose-600 sm:w-fit sm:py-4 sm:text-base"
             >
-              <FaCartPlus className="text-xl" />
+              <FaCartPlus className="text-lg" />
               Add To Cart
             </button>
 

@@ -7,75 +7,89 @@ import {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-orange-50">
-      <div className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-orange-200/40 blur-3xl"></div>
+    <section className="relative overflow-hidden bg-slate-50">
+      {/* BACKGROUND DECORATION */}
+      <div className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-rose-200/40 blur-3xl" />
 
-      <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-yellow-200/50 blur-3xl"></div>
+      <div className="absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-slate-200/70 blur-3xl" />
 
-      <div className="relative mx-auto grid min-h-650px max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:px-8">
+      <div className="relative mx-auto grid min-h-650px max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-20">
+
         {/* LEFT */}
-        <div>
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-orange-600 shadow-sm">
+        <div className="text-center lg:text-left">
+
+          {/* BADGE */}
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-rose-100 bg-white px-4 py-2 text-xs font-semibold text-rose-600 shadow-sm sm:text-sm">
             🔥 Fast & Fresh Food Delivery
           </div>
 
-          <h1 className="max-w-2xl text-5xl font-black leading-tight text-gray-950 sm:text-6xl lg:text-7xl">
+          {/* TITLE */}
+          <h1 className="mx-auto max-w-2xl text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-6xl lg:mx-0 lg:text-7xl">
             Delicious Food
-            <span className="block text-orange-500">
+
+            <span className="block text-rose-600">
               Delivered Fast.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-            Order your favorite meals from our
-            delicious menu and enjoy fresh food
-            delivered directly to your door.
+          {/* DESCRIPTION */}
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-slate-500 sm:mt-6 sm:text-base sm:leading-8 lg:mx-0 lg:text-lg">
+            Order your favorite meals from our delicious
+            menu and enjoy fresh food delivered directly
+            to your door.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* BUTTONS */}
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4 lg:justify-start">
+
             <Link
               to="/shop"
-              className="flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 font-bold text-white shadow-lg shadow-orange-500/30 transition hover:-translate-y-1 hover:bg-orange-600"
+              className="flex items-center justify-center gap-3 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-rose-600 sm:py-4 sm:text-base"
             >
               Order Now
-
               <FaArrowRight />
             </Link>
 
             <a
               href="#featured"
-              className="rounded-full border border-gray-300 bg-white px-7 py-4 font-bold text-gray-900 transition hover:border-orange-500 hover:text-orange-500"
+              className="flex items-center justify-center rounded-full border border-slate-200 bg-white px-7 py-3.5 text-sm font-bold text-slate-700 transition hover:border-rose-500 hover:text-rose-600 sm:py-4 sm:text-base"
             >
               View Menu
             </a>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-8">
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-orange-500 shadow">
+          {/* INFO */}
+          <div className="mt-9 flex flex-wrap justify-center gap-6 sm:mt-10 sm:gap-8 lg:justify-start">
+
+            {/* DELIVERY */}
+            <div className="flex items-center gap-3 text-left">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-rose-600 shadow-sm">
                 <FaClock />
               </div>
 
               <div>
-                <p className="font-bold text-gray-900">
+                <p className="font-bold text-slate-900">
                   30 Minutes
                 </p>
-                <p className="text-sm text-gray-500">
+
+                <p className="text-sm text-slate-500">
                   Fast Delivery
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-yellow-500 shadow">
+            {/* RATING */}
+            <div className="flex items-center gap-3 text-left">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-amber-400 shadow-sm">
                 <FaStar />
               </div>
 
               <div>
-                <p className="font-bold text-gray-900">
+                <p className="font-bold text-slate-900">
                   4.9 Rating
                 </p>
-                <p className="text-sm text-gray-500">
+
+                <p className="text-sm text-slate-500">
                   Happy Customers
                 </p>
               </div>
@@ -84,37 +98,60 @@ function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative mx-auto w-full max-w-xl">
-          <div className="absolute inset-10 rounded-full bg-orange-400"></div>
+        <div className="relative mx-auto mt-4 w-full max-w-xl lg:mt-0">
 
+          {/* BACK SHAPE */}
+          <div className="absolute inset-6 rounded-[40px] bg-rose-100 sm:inset-10 sm:rounded-[60px]" />
+
+          {/* IMAGE */}
           <img
             src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=80"
             alt="Delicious Food"
-            className="relative z-10 h-470px w-full rounded-[60px] object-cover shadow-2xl"
+            className="
+              relative
+              z-10
+              h-320px
+              w-full
+              rounded-32px
+              object-cover
+              shadow-2xl
+              sm:h-400px
+              sm:rounded-[45px]
+              lg:h-470px
+              lg:rounded-[60px]
+            "
           />
 
-          <div className="absolute -bottom-6 -left-5 z-20 rounded-2xl bg-white p-4 shadow-xl">
-            <p className="text-sm text-gray-500">
+          {/* PRICE CARD */}
+          <div className="absolute -bottom-4 left-3 z-20 rounded-2xl border border-slate-100 bg-white px-4 py-3 shadow-xl sm:-bottom-6 sm:-left-5 sm:p-4">
+            <p className="text-xs text-slate-500 sm:text-sm">
               Starting From
             </p>
 
-            <p className="text-2xl font-black text-orange-500">
+            <p className="text-xl font-black text-rose-600 sm:text-2xl">
               $3.00
             </p>
           </div>
 
-          <div className="absolute -right-4 top-12 z-20 rounded-2xl bg-white p-4 shadow-xl">
+          {/* CUSTOMER CARD */}
+          <div className="absolute right-2 top-5 z-20 rounded-2xl border border-slate-100 bg-white px-3 py-3 shadow-xl sm:-right-4 sm:top-12 sm:p-4">
             <div className="flex items-center gap-2">
-              <span className="text-xl">😍</span>
+              <span className="text-lg sm:text-xl">
+                😍
+              </span>
 
               <div>
-                <p className="font-bold">1000+</p>
-                <p className="text-xs text-gray-500">
+                <p className="text-sm font-black text-slate-900 sm:text-base">
+                  1000+
+                </p>
+
+                <p className="text-[10px] text-slate-500 sm:text-xs">
                   Happy Customers
                 </p>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

@@ -9,6 +9,7 @@ import Mainlayout from "./component/layout/Mainlayout";
 import Homepage from "./component/page/Homepage";
 import Shoppage from "./component/page/Shoppage";
 import Cartpage from "./component/page/Cartpage";
+import Favoritepage from "./component/page/Favoritepage";
 import Loginpage from "./component/page/Loginpage";
 
 import ProductDetail from "./Product/ProductDetail";
@@ -17,14 +18,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Mainlayout />}
-        >
-          <Route
-            index
-            element={<Homepage />}
-          />
+
+        <Route path="/" element={<Mainlayout />}>
+          <Route index element={<Homepage />} />
 
           <Route
             path="shop"
@@ -40,13 +36,18 @@ function App() {
             path="cart"
             element={<Cartpage />}
           />
+
+          <Route
+            path="favorite"
+            element={<Favoritepage />}
+          />
         </Route>
 
-        {/* LOGIN */}
         <Route
           path="/login"
           element={<Loginpage />}
         />
+
       </Routes>
     </BrowserRouter>
   );

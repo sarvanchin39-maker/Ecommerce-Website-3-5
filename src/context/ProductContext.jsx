@@ -1,7 +1,12 @@
-import { createContext, useContext } from "react";
+import {
+  createContext,
+  useContext,
+} from "react";
 
+// CREATE PRODUCT CONTEXT
 export const ProductContext = createContext(null);
 
+// CUSTOM HOOK
 export const useProduct = () => {
   const context = useContext(ProductContext);
 

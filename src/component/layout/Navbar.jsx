@@ -5,6 +5,7 @@ import {
   FaUtensils,
   FaUser,
   FaHeart,
+  FaTimes,
 } from "react-icons/fa";
 import { useState } from "react";
 import { useProduct } from "../../context/ProductContext";
@@ -12,55 +13,57 @@ import { useProduct } from "../../context/ProductContext";
 function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const { cartCount } = useProduct();
+  const {
+    cartCount,
+    favoriteCount,
+  } = useProduct();
 
   const navClass = ({ isActive }) =>
     isActive
-      ? "rounded-full border border-pink-500 bg-pink-500 px-5 py-2 font-semibold text-white shadow-md"
-      : "rounded-full border border-gray-300 bg-white px-5 py-2 text-gray-700 transition duration-300 hover:border-pink-500 hover:bg-pink-50 hover:text-pink-500";
+      ? "rounded-full bg-rose-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition"
+      : "rounded-full px-5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-rose-50 hover:text-rose-600";
 
   const normalNavClass =
-    "rounded-full border border-gray-300 bg-white px-5 py-2 text-gray-700 transition duration-300 hover:border-pink-500 hover:bg-pink-50 hover:text-pink-500";
+    "rounded-full px-5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-rose-50 hover:text-rose-600";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 shadow-sm backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
         {/* LOGO */}
         <Link
           to="/"
-          className="flex items-center gap-2"
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-3"
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-500 text-white shadow-md">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-rose-600 text-white shadow-sm">
             <FaUtensils />
           </div>
 
           <div>
-            <h1 className="text-xl font-black">
-              <span className="text-orange-500">EAT</span>
-
-              <span className="px-2 text-green-500">
-                A
-              </span>
-
-              <span className="text-fuchsia-600">
-                LOT
-              </span>
+            <h1 className="text-lg font-black tracking-tight text-slate-900 sm:text-xl">
+              EAT A LOT
             </h1>
 
-            <p className="text-[10px] uppercase tracking-[3px] text-gray-400">
+            <p className="text-[9px] font-semibold uppercase tracking-[3px] text-slate-400 sm:text-[10px]">
               Fresh Food
             </p>
           </div>
         </Link>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden items-center gap-3 md:flex">
-          <NavLink to="/" className={navClass}>
+        <nav className="hidden items-center gap-1 md:flex">
+          <NavLink
+            to="/"
+            className={navClass}
+          >
             Home
           </NavLink>
 
-          <NavLink to="/shop" className={navClass}>
+          <NavLink
+            to="/shop"
+            className={navClass}
+          >
             Menu
           </NavLink>
 
@@ -80,12 +83,12 @@ function Navbar() {
         </nav>
 
         {/* RIGHT */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
 
           {/* LOGIN */}
           <Link
             to="/login"
-            className="hidden items-center gap-2 rounded-full border border-pink-500 px-5 py-2 font-semibold text-black transition duration-300 hover:bg-pink-500 hover:text-white md:flex"
+            className="hidden items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-rose-600 hover:text-rose-600 lg:flex"
           >
             <FaUser />
             Login
@@ -94,22 +97,32 @@ function Navbar() {
           {/* FAVORITE */}
           <Link
             to="/favorite"
-            className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-pink-500 bg-white text-pink-500 shadow-sm transition duration-300 hover:bg-pink-500 hover:text-white"
+            className="relative hidden h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-rose-600 hover:bg-rose-50 hover:text-rose-600 sm:flex"
             title="Favorite"
           >
             <FaHeart />
+
+            {favoriteCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-bold text-white">
+                {favoriteCount > 99
+                  ? "99+"
+                  : favoriteCount}
+              </span>
+            )}
           </Link>
 
           {/* CART */}
           <Link
             to="/cart"
-            className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-pink-500 text-white shadow-md transition duration-300 hover:bg-pink-600"
+            className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white shadow-sm transition hover:bg-rose-600 sm:h-11 sm:w-11"
           >
             <FaShoppingBag />
 
             {cartCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full bg-blue-600 px-1 text-xs font-bold text-white">
-                {cartCount}
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-600 px-1 text-[10px] font-bold text-white">
+                {cartCount > 99
+                  ? "99+"
+                  : cartCount}
               </span>
             )}
           </Link>
@@ -118,17 +131,18 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-pink-500 bg-white text-pink-500 md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:border-rose-600 hover:text-rose-600 md:hidden sm:h-11 sm:w-11"
           >
-            <FaBars />
+            {open ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="border-t border-gray-100 bg-white px-5 py-5 shadow-lg md:hidden">
-          <div className="flex flex-col gap-3">
+        <div className="border-t border-slate-100 bg-white px-4 py-4 shadow-lg md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2">
+
             <NavLink
               to="/"
               className={navClass}
@@ -161,21 +175,25 @@ function Navbar() {
               Contact
             </a>
 
-            {/* MOBILE FAVORITE */}
             <Link
               to="/favorite"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-full border border-pink-500 px-5 py-2 font-semibold text-pink-500 transition hover:bg-pink-500 hover:text-white"
+              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 font-semibold text-slate-700 transition hover:border-rose-600 hover:text-rose-600"
             >
               <FaHeart />
               Favorite
+
+              {favoriteCount > 0 && (
+                <span className="rounded-full bg-rose-600 px-2 py-0.5 text-xs text-white">
+                  {favoriteCount}
+                </span>
+              )}
             </Link>
 
-            {/* MOBILE LOGIN */}
             <Link
               to="/login"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-full border border-pink-500 px-5 py-2 font-semibold text-black transition hover:bg-pink-500 hover:text-white"
+              className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 font-semibold text-white transition hover:bg-rose-600"
             >
               <FaUser />
               Login

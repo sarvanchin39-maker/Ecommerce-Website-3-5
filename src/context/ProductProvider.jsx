@@ -12,7 +12,9 @@ function ProductProvider({ children }) {
 
   const [cart, setCart] = useState([]);
 
-  // FILTER PRODUCTS
+  const [favorites, setFavorites] = useState([]);
+
+  // ================= FILTER PRODUCTS =================
   const filterProducts = useMemo(() => {
     return products.filter((product) => {
       const categoryMatch =
@@ -27,7 +29,7 @@ function ProductProvider({ children }) {
     });
   }, [products, selectedCategory, search]);
 
-  // GET CATEGORY
+  // ================= GET CATEGORIES =================
   const categories = useMemo(() => {
     return [
       "All",
@@ -37,7 +39,7 @@ function ProductProvider({ children }) {
     ];
   }, [products]);
 
-  // ADD CART
+  // ================= ADD TO CART =================
   const addToCart = (product) => {
     setCart((currentCart) => {
       const existingProduct = currentCart.find(
@@ -65,14 +67,14 @@ function ProductProvider({ children }) {
     });
   };
 
-  // REMOVE CART
+  // ================= REMOVE FROM CART =================
   const removeFromCart = (id) => {
     setCart((currentCart) =>
       currentCart.filter((item) => item.id !== id)
     );
   };
 
-  // INCREASE
+  // ================= INCREASE QUANTITY =================
   const increaseQuantity = (id) => {
     setCart((currentCart) =>
       currentCart.map((item) =>
@@ -86,7 +88,7 @@ function ProductProvider({ children }) {
     );
   };
 
-  // DECREASE
+  // ================= DECREASE QUANTITY =================
   const decreaseQuantity = (id) => {
     setCart((currentCart) =>
       currentCart
@@ -102,42 +104,97 @@ function ProductProvider({ children }) {
     );
   };
 
-  // TOTAL CART ITEMS
+  // ================= FAVORITE =================
+  const addToFavorite = (product) => {
+    setFavorites((currentFavorites) => {
+      const exists = currentFavorites.some(
+        (item) => item.id === product.id
+      );
+
+      if (exists) {
+        return currentFavorites;
+      }
+
+      return [...currentFavorites, product];
+    });
+  };
+
+  const removeFromFavorite = (id) => {
+    setFavorites((currentFavorites) =>
+      currentFavorites.filter(
+        (item) => item.id !== id
+      )
+    );
+  };
+
+  const toggleFavorite = (product) => {
+    setFavorites((currentFavorites) => {
+      const exists = currentFavorites.some(
+        (item) => item.id === product.id
+      );
+
+      if (exists) {
+        return currentFavorites.filter(
+          (item) => item.id !== product.id
+        );
+      }
+
+      return [...currentFavorites, product];
+    });
+  };
+
+  const isFavorite = (id) => {
+    return favorites.some(
+      (item) => item.id === id
+    );
+  };
+
+  // ================= CART COUNT =================
   const cartCount = cart.reduce(
     (total, item) => total + item.quantity,
     0
   );
 
-  // TOTAL PRICE
+  // ================= TOTAL PRICE =================
   const totalPrice = cart.reduce(
     (total, item) =>
-      total + item.price * item.quantity,
+      total + Number(item.price) * item.quantity,
     0
   );
 
-  const value = {
-    products,
+  // ================= FAVORITE COUNT =================
+  const favoriteCount = favorites.length;
 
+  const value = {
+    // PRODUCTS
+    products,
     filterProducts,
 
+    // CATEGORY
     categories,
-
     selectedCategory,
     setSelectedCategory,
 
+    // SEARCH
     search,
     setSearch,
 
+    // CART
     cart,
     cartCount,
-
+    totalPrice,
     addToCart,
     removeFromCart,
-
     increaseQuantity,
     decreaseQuantity,
 
-    totalPrice,
+    // FAVORITE
+    favorites,
+    favoriteCount,
+    addToFavorite,
+    removeFromFavorite,
+    toggleFavorite,
+    isFavorite,
   };
 
   return (
